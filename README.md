@@ -11,7 +11,8 @@ PERN Stack Ecommerce API developed as part of the course Database Systems
 8. Go to localhost:3000
 
 Engineered by:
-- Mansoor Shaikh
 - Jawad Mustafa
 - Murtaza Kazmi
+
+Special thanks to Mansoor Shaikh for helping us out.
 
