@@ -1,4 +1,4 @@
-PERN Stack Ecommerce API developed as part of the course Database Systems
+PERN Stack Ecommerce API
 
 #Installation (Development):
 1. Install postgresql
