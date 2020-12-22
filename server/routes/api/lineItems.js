@@ -31,14 +31,14 @@ router.post('/', async (req, res) => {
             cart_id
         } = req.body;
         const {
-            order_id
-        } = req.body;
-        const {
             product_id
         } = req.body;
+        const {
+            quantity
+        } = req.body;
 
-        const newLineItem = await pool.query("INSERT INTO lineItems (cart_id, order_id, product_id) VALUES($1, $2, $3)",
-            [cart_id, order_id, product_id]);
+        const newLineItem = await pool.query("INSERT INTO lineItems (cart_id, product_id, quantity) VALUES($1, $2, $3)",
+            [cart_id, product_id, quantity]);
 
         res.json(newLineItem.rows);
     } catch (error) {
@@ -46,29 +46,23 @@ router.post('/', async (req, res) => {
     }
 });
 
-//update
+//increments the value of a lineitem in cart
 router.put('/', async (req, res) => {
     try {
         console.log(req.body);
 
         const {
-            lineitem_id
-        } = req.body;
-        const {
             cart_id
-        } = req.body;
-        const {
-            order_id
         } = req.body;
         const {
             product_id
         } = req.body;
 
-        const lineItem = await pool.query("UPDATE lineItems SET order_id = $2, product_id = $3 WHERE lineitem_id = $4 WHERE cart_id = $1",
+        const lineItem = await pool.query("UPDATE lineItems SET quantity = quantity+1 WHERE cart_id = $2 WHERE product_id = $3",
 
-            [cart_id, order_id, product_id, lineitem_id]);
+            [quantity,  product_id, cart_id]);
 
-        res.json("user was updated.");
+        res.json("lineItem was updated.");
     } catch (error) {
         console.error(error.message);
     }
@@ -82,7 +76,7 @@ router.get("/:id", async (req, res) => {
             id
         } = req.params;
 
-        const lineItem = await pool.query("SELECT * FROM lineItems where lineitem_id = $1", [id]);
+        const lineItem = await pool.query("SELECT * FROM lineItems where cart_id = $1", [id]);
 
         res.json(lineItem.rows);
     } catch (error) {

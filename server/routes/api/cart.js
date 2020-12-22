@@ -28,19 +28,19 @@ router.get('/', authorize, async (req, res) => {
 });
 
 //create
-router.post('/', authorize, async (req, res) => {
+router.post('/', async (req, res) => {
     try {
 
         // gets the cart for the user
-        const cart_id = await pool.query("SELECT cart_id FROM carts WHERE user_id = $1", [req.user.id]);
+        const cart_id = await pool.query("SELECT cart_id FROM carts WHERE user_id = $1", [req.user_id]);
         const {
             order_id,
             product_id
         } = req.body;
 
         //product is inserted into the lineitems using this post call. Lineitems is connected to cart as one to one.
-        const lineItem = await pool.query("INSERT INTO lineItems (cart_id, order_id, product_id) VALUES($1, $2, $3)",
-            [cart_id.rows[0], order_id, product_id]);
+        const lineItem = await pool.query("INSERT INTO lineItems (cart_id,product_id, quantity) VALUES($1, $2, $3)",
+            [cart_id.rows[0], product_id, quantity]);
 
         res.json(lineItem.rows);
     } catch (error) {
@@ -49,7 +49,7 @@ router.post('/', authorize, async (req, res) => {
 });
 
 //update
-router.put('/', authorize, async (req, res) => {
+router.put('/', async (req, res) => {
     try {
         console.log(req.body);
 
@@ -69,7 +69,7 @@ router.put('/', authorize, async (req, res) => {
 
 //find by id
 
-router.get("/:id", authorize, async (req, res) => {
+router.get("/:id", async (req, res) => {
     try {
         const {
             id
@@ -83,7 +83,7 @@ router.get("/:id", authorize, async (req, res) => {
 
 
 //delete
-router.delete("/:id", authorize, async (req, res) => {
+router.delete("/:id",  async (req, res) => {
     try {
         const {
             id

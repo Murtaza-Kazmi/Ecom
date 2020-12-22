@@ -55,14 +55,14 @@ INSERT INTO payments(total, user_id, order_id) VALUES(130, 3, 3);
 
 INSERT INTO payments(total, user_id, order_id) VALUES(150, 5, 4);
 
-INSERT INTO lineItems(cart_id, order_id, product_id)
+INSERT INTO lineItems(cart_id, product_id, quantity)
 VALUES (1, 1, 1);
 
-INSERT INTO lineItems(cart_id,  product_id)
-VALUES (1, 2);
+INSERT INTO lineItems(cart_id, product_id, quantity)
+VALUES (1, 2, 1);
 
-INSERT INTO lineItems(cart_id, product_id)
-VALUES (2, 3);
+INSERT INTO lineItems(cart_id, product_id, quantity)
+VALUES (1, 3,1);
 
-INSERT INTO lineItems(cart_id, product_id)
-VALUES (3, 4);
+INSERT INTO lineItems(cart_id, product_id, quantity)
+VALUES (1, 4,1);

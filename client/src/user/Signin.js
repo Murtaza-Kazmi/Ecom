@@ -75,6 +75,7 @@ const Signin = ({
 			if(parseRes.jwtToken) {
 				// saves the JWT token in the browser's local storage
 				localStorage.setItem("token", parseRes.jwtToken);
+				//localStorage.setItem("user_id", 1);
 				// setAuth() is the boolean that's sent to every other component to determine auth
 				setAuth(true);
 				toast.success("Logged in Successfully");

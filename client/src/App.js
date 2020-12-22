@@ -22,6 +22,7 @@ import Dashboard from "./user/dashboard";
 import Shopping from "./user/Shopping";
 import Home from "./user/Home";
 import ProductPage from "./user/ProductPage";
+import Cart from './user/Cart';
 import {
 	toast
 } from "react-toastify";
@@ -92,6 +93,21 @@ function App() {
 				/>) : ( < Redirect to = "/" / > )
 		}
 		/>
+
+		<
+		Route path = "/cart"
+		render = {
+			props => isAuthenticated ? ( < Cart {
+					...props
+				}
+				setAuth = {
+					setAuth
+				}
+				/>) : ( < Redirect to = "/" / > )
+		}
+		/>
+
+
 		<
 		Route exact path = "/Product"
 		render = {

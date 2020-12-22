@@ -15,11 +15,33 @@ const Card = ({
     const [redirect, setRedirect] = useState(false);
     const [count, setCount] = useState(product.count);
 
+// POSTs to the cart API and sends the product id
+    // async function addToCart(id) {
+    //
+    //   try {
+    //     console.log("adding...");
+    //       await fetch("http://localhost:8000/api/cart/", {
+    //       method: "POST",
+    //       headers: { jwt_token: localStorage.token }, // token is stored in browser after login
+    //   body: JSON.stringify( {
+    //           "user_id" : localStorage.user_id,
+    //           "product_id": id,
+    //       })
+    //     });
+    //
+    //   } catch (err) {
+    //     console.log("could not add...");
+    //     console.error(err.message);
+    //   }
+    //     setRedirect(false);
+    //
+    // }
+
     const addToCart = () => {
-        addItem(product, () => {
-            setRedirect(false);
-        });
-    }
+      addItem(product, () => {
+        setRedirect(false);
+      });
+    };
 
     const shouldRedirect = (redirect) => {
         if (redirect) {
@@ -48,9 +70,9 @@ const Card = ({
         return(
             showAddToCart &&(
                 <button
-                    onClick={() => {
-                        addToCart()
-                    }}
+                onClick={() => {
+                   addToCart()
+               }}
                     className='btn btn-outline-warning mt-2 mb-2'>
                     Add to cart
                 </button>

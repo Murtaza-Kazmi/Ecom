@@ -3,6 +3,7 @@ import {Link, withRouter} from 'react-router-dom';
 import checkAuthenticated from '../App';
 import setAuth from '../App';
 import logout from '../user/Product';
+import {itemTotal} from '../user/cartHelpers'
 
 const isActive = (history, path) => {
     if (history.location.pathname === path) {
@@ -35,7 +36,10 @@ const Menu = ({history}) => {
                         className='nav-link'
                         style={isActive(history, '/cart')}
                         to='/cart'>
-                            Cart
+                            Cart {" "}
+                            <sup>
+                              <small className= "cart-badge">{itemTotal()} </small>
+                            </sup>
                     </Link>
                 </li>
                 {checkAuthenticated() &&(
